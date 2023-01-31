@@ -1,0 +1,8 @@
+# Getting Started
+Anify API utilizes a REST API which is wildly supported across multiple platforms. Use your code base of choice and send requests to the public API [`https://api.anify.tv`](https://api.anify.tv).
+Example with NodeJS:
+```javascript
+const axios = require("axios");
+await axios.get("https://api.anify.tv/stats", { headers: {"Content-Type": "application/json" }});
+```
+Most of this documentation will feature examples in NodeJS, but a lot of them can be easily replicated in other languages.

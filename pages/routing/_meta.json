@@ -1,0 +1,15 @@
+{
+    "start": "Get Started",
+
+    "base": "Base Routes",
+
+    "anime": { "title": "Anime", "theme": { "collapsed": true } },
+
+    "manga": { "title": "Manga", "theme": { "collapsed": true } },
+
+    "novels": { "title": "Light Novels", "theme": { "collapsed": true } },
+
+    "meta": { "title": "Meta", "theme": { "collapsed": true } },
+    
+    "other": "Other Routes"
+}

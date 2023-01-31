@@ -1,0 +1,136 @@
+# Base Routes
+Many of the routes Anime and Manga use are shared due to how the backend works. The following are common routes used by both.
+
+## Popular
+Fetches popular media from AniList and maps to providers.
+```
+/popular/{type}
+```
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   type   | string | The type of media. Must be either `anime` or `manga`. |    Yes    |  `""`   |
+
+Request can be either a `POST` or `GET` request.
+```javascript
+const axios = require("axios");
+
+const url = "https://api.anify.tv/popular/anime";
+const data = async () => {
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+ 
+console.log(data);
+```
+## Seasonal
+Fetches seasonal media from AniList and maps to providers.
+```
+/seasonal/{type}/{season}
+```
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   type   | string | The type of media. Must be either `anime` or `manga`. |    Yes    |  `""`   |
+|   season   | string | The season type to list. Must be either `trending`, `season`, `next_season`, `popular`, or `top`. |    Yes    |  `""`   |
+
+### POST
+```
+/seasonal/{type}
+```
+#### Body Example:
+```json
+{ "season": "{trending/season/next_season/popular/top}" }
+```
+
+Request can be either a `POST` or `GET` request.
+```javascript
+const axios = require("axios");
+
+const url = "https://api.anify.tv/seasonal/anime/trending";
+const data = async () => {
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+ 
+console.log(data);
+```
+
+## Searching
+Searches AniList and maps the data to other providers.
+```
+/search/{type}/{query}
+```
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   type   | string | The type of media. Must be either `anime`, `manga`, or `novels`. |    Yes    |  `""`   |
+|   query   | string | Name of the media you're searching for. |    Yes    |  `""`   |
+
+### POST
+```
+/search/{type}
+```
+#### Body Example:
+```json
+{ "query": "{string}" }
+```
+
+Request can be either a `POST` or `GET` request.
+```javascript
+const axios = require("axios");
+
+const url = "https://api.anify.tv/search/anime/Overlord";
+const data = async () => {
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+ 
+console.log(data);
+```
+
+## Genres
+Searches AniList for media matching the genres provided and maps the data to other providers.
+```
+/genres/{type}
+```
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   type   | string | The type of media. Must be either `anime` or `manga`. |    Yes    |  `""`   |
+
+```json
+{
+    "included_genres": [{genres_list}],
+    "excluded_genres": [{genres_list}]
+}
+```
+
+```javascript
+const axios = require("axios");
+
+const url = "https://api.anify.tv/genres/anime";
+const included = ["Slice of Life", "Sports"];
+const excluded = ["Ecchi"];
+const data = async () => {
+    try {
+        const { data } = await axios.post(url, {
+            included_genres: included,
+            excluded_genres: excluded
+        });
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+ 
+console.log(data);
+```
