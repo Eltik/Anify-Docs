@@ -1,6 +1,4 @@
 {
-    "start": "Get Started",
-
     "base": "Base Routes",
 
     "anime": { "title": "Anime", "theme": { "collapsed": true } },

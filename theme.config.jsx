@@ -18,7 +18,7 @@ export default {
     footer: {
         text: "Copyright (c) Anify | 2023-present",
     },
-    primaryHue: 344,
+    primaryHue: 100,
     head: function useHead() {
         const description =
         "Documentation and routes for Anify API.";
