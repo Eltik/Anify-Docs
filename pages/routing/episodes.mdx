@@ -1,0 +1,222 @@
+---
+title: Episodes
+---
+
+import { Tab, Tabs } from "nextra-theme-docs";
+
+# Episodes
+Used for fetching episodes for a given media. Technical details regarding the usage of the episodes function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+
+## Rate Limits
+The episodes route has a rate limit of 40 requests per minute unless your API key is whitelisted.
+
+## Route Schema (URL)
+<Tabs items={["Parameters", "Query", "Post"]}>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episodes/{id}?apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are getting episodes for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episodes/21?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episodes/21?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episodes?id={id}&apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are getting episodes for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episodes?id=21&apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episodes?id=21&apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episodes?apikey={apikey}
+            ```
+            ```json
+            {
+                "id": "string"
+            }
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are getting episodes for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episodes?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.post(url, {
+                                id: "21"
+                            });
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episodes?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.post(url, json={'id': "21"})
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+</Tabs>
+
+
+## Response Schema
+
+<Tabs items={["200 OK"]}>
+    <Tab>
+    **MIME Type:** `application/json`
+    ```json copy=false
+    [
+        {
+            "providerId": "string",
+            "episodes": [
+                {
+                    "id": "string",
+                    "number": "number",
+                    "title": "string",
+                    "isFiller": "boolean",
+                    "img": "string | null",
+                    "hasDub": "boolean"
+                }
+            ]
+        }
+    ]
+    ```
+    </Tab>
+</Tabs>

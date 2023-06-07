@@ -5,10 +5,10 @@ title: Seasonal
 import { Tab, Tabs } from "nextra-theme-docs";
 
 # Seasonal
-Used for querying AniList's seasonal route and returning media. This route also inserts media if some of AniList's media doesn't exist in the database like the `search` route. This route will add media to the mapping queue to be mapped if there are no results found (which is why a high rate limit is necessary). Technical details regarding the usage of the search function for anime, manga, and novels can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+Used for querying AniList's seasonal route and returning media. This route also inserts media if some of AniList's media doesn't exist in the database like the `search` route. Technical details regarding the usage of the seasonal function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The search route has a rate limit of 50 requests per minute unless your API key is whitelisted.
+The seasonal route has a rate limit of 50 requests per minute unless your API key is whitelisted.
 
 ## Route Schema (URL)
 <Tabs items={["Parameters", "Query", "Post"]}>

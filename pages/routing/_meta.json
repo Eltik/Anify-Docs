@@ -4,5 +4,12 @@
     "tags": "Tags",
     "searching": "Searching",
     "searching-advanced": "Searching (Advanced)",
-    "seasonal": "Seasonal"
+    "seasonal": "Seasonal",
+    "schedule": "Schedule",
+    "info": "Info",
+    "info-mal": "Info (MAL)",
+    "episodes": "Episodes",
+    "episodes-mal": "Episodes (MAL)",
+    "chapters": "Chapters",
+    "chapters-mal": "Chapters (MAL)"
 }
