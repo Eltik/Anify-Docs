@@ -9,14 +9,14 @@ export default {
     },
     logo: <span>Anify Documentation</span>,
     project: {
-        link: "https://github.com/Eltik/Anify-API",
+        link: "https://anify.tv",
     },
     chat: {
         link: "https://anify.tv/discord",
     },
     docsRepositoryBase: "https://github.com/Eltik/Anify-Docs",
     footer: {
-        text: "Copyright (c) Anify | 2023-present",
+        text: "Copyright (c) Anify | 2021-present",
     },
     primaryHue: 100,
     head: function useHead() {

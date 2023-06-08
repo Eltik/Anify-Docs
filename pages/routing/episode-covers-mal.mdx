@@ -1,0 +1,213 @@
+---
+title: Skip Times (MAL)
+---
+
+import { Tab, Tabs } from "nextra-theme-docs";
+
+# Episode Covers (MAL)
+Used for querying episode covers for a media but using MAL IDs rather than AniList IDs. Technical details regarding the usage of the episode covers MAL function for anime can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+
+## Rate Limits
+The episode covers MAL route has a rate limit of 40 requests per minute unless your API key is whitelisted.
+
+## Route Schema (URL)
+<Tabs items={["Parameters", "Query", "Post"]}>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episode-covers-mal/{id}?apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The MAL ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episode-covers-mal/39535?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episode-covers-mal/39535?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episode-covers-mal?id={id}&apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The MAL ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episode-covers-mal?id=39535&apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episode-covers-mal?id=39535&apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/episode-covers-mal?apikey={apikey}
+            ```
+            ```json
+            {
+                "id": "string"
+            }
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The MAL ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/episode-covers-mal?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.post(url, {
+                                id: "39535"
+                            });
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/episode-covers-mal?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.post(url, json={'id': "39535"})
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+</Tabs>
+
+
+## Response Schema
+
+<Tabs items={["200 OK"]}>
+    <Tab>
+    **MIME Type:** `application/json`
+    ```json copy=false
+    [
+        {
+            "episode": "number",
+            "img": "string"
+        }
+    ]
+    ```
+    </Tab>
+</Tabs>
