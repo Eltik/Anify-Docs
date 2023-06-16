@@ -215,9 +215,6 @@ The search route has a rate limit of 25 requests per minute unless your API key 
     ```json copy=false
     [
         "id": "string",
-        "malId": "string | null",
-        "kitsuId": "string | null",
-        "tvdbId": "string | null"
         "slug": "string",
         "coverImage": "string",
         "bannerImage": "string",
@@ -280,6 +277,11 @@ The search route has a rate limit of 25 requests per minute unless your API key 
         "genres": ["string"],
         "tags": ["string"],
         "episodes": {
+            "latest": {
+                "updatedAt": "number",
+                "latestTitle": "string",
+                "latestEpisode": "number"
+            },
             "data": [{
                 "episodes": [
                     {
@@ -288,19 +290,26 @@ The search route has a rate limit of 25 requests per minute unless your API key 
                         "title": "string",
                         "hasDub": "boolean",
                         "number": "number",
-                        "isFiller": "boolean"
+                        "isFiller": "boolean",
+                        "updatedAt": "number"
                     }
                 ],
                 "providerId": "string"
             }]
         },
         "chapters": {
+            "latest": {
+                "updatedAt": "number",
+                "latestTitle": "string",
+                "latestChapter": "number"
+            },
             "data": [{
                 "chapters": [
                     {
                         "id": "string",
                         "title": "string",
-                        "number": "number"
+                        "number": "number",
+                        "updatedAt": "number"
                     }
                 ],
                 "providerId": "string"

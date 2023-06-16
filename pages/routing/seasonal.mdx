@@ -205,9 +205,6 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
     [
         "trending": [
             "id": "string",
-            "malId": "string | null",
-            "kitsuId": "string | null",
-            "tvdbId": "string | null"
             "slug": "string",
             "coverImage": "string",
             "bannerImage": "string",
@@ -270,6 +267,11 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
             "genres": ["string"],
             "tags": ["string"],
             "episodes": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestEpisode": "number"
+                },
                 "data": [{
                     "episodes": [
                         {
@@ -278,122 +280,26 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
                             "title": "string",
                             "hasDub": "boolean",
                             "number": "number",
-                            "isFiller": "boolean"
+                            "isFiller": "boolean",
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
                 }]
             },
             "chapters": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestChapter": "number"
+                },
                 "data": [{
                     "chapters": [
                         {
                             "id": "string",
                             "title": "string",
-                            "number": "number"
-                        }
-                    ],
-                    "providerId": "string"
-                }]
-            },
-            "averageRating": "number",
-            "averagePopularity": "number",
-            "artwork": [
-                {
-                    "img": "string",
-                    "type": "banner | poster | clear_logo | top_banner",
-                    "providerId": "string"
-                }
-            ]
-        ],
-        "season": [
-            "id": "string",
-            "malId": "string | null",
-            "kitsuId": "string | null",
-            "tvdbId": "string | null"
-            "slug": "string",
-            "coverImage": "string",
-            "bannerImage": "string",
-            "trailer": "string | null",
-            "title": {
-                "native": "string",
-                "romaji": "string",
-                "english": "string"
-            },
-            "currentEpisode": "number | null",
-            "mappings": [
-                {
-                    "id": "string",
-                    "providerId": "string",
-                    "similarity": "number"
-                },
-            ],
-            "synonyms": ["string"],
-            "countryOfOrigin": "string",
-            "description": "string",
-            "duration": "number | null",
-            "color": "string | null",
-            "year": "number | null",
-            "rating": {
-                "mal": "number | null",
-                "tvdb": "number | null",
-                "kitsu": "number | null",
-                "anilist": "number | null"
-            },
-            "popularity": {
-                "mal": "number | null",
-                "tvdb": "number | null",
-                "kitsu": "number | null",
-                "anilist": "number | null"
-            },
-            "type": "ANIME | MANGA",
-            "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-            "relations": [
-                {
-                    "id": "number",
-                    "data": {
-                        "id": "number",
-                        "type": "ANIME | MANGA",
-                        "title": {
-                            "userPreferred": "string"
-                        },
-                        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-                        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
-                        "coverImage": {
-                            "large": "string"
-                        },
-                        "bannerImage": "string | null"
-                    },
-                    "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
-                },
-            ],
-            "totalEpisodes": "number | null",
-            "totalVolumes": "number | null",
-            "totalChapters": "number | null",
-            "genres": ["string"],
-            "tags": ["string"],
-            "episodes": {
-                "data": [{
-                    "episodes": [
-                        {
-                            "id": "string",
-                            "img": "string | null",
-                            "title": "string",
-                            "hasDub": "boolean",
                             "number": "number",
-                            "isFiller": "boolean"
-                        }
-                    ],
-                    "providerId": "string"
-                }]
-            },
-            "chapters": {
-                "data": [{
-                    "chapters": [
-                        {
-                            "id": "string",
-                            "title": "string",
-                            "number": "number"
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
@@ -411,9 +317,6 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
         ],
         "popular": [
             "id": "string",
-            "malId": "string | null",
-            "kitsuId": "string | null",
-            "tvdbId": "string | null"
             "slug": "string",
             "coverImage": "string",
             "bannerImage": "string",
@@ -476,6 +379,11 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
             "genres": ["string"],
             "tags": ["string"],
             "episodes": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestEpisode": "number"
+                },
                 "data": [{
                     "episodes": [
                         {
@@ -484,19 +392,26 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
                             "title": "string",
                             "hasDub": "boolean",
                             "number": "number",
-                            "isFiller": "boolean"
+                            "isFiller": "boolean",
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
                 }]
             },
             "chapters": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestChapter": "number"
+                },
                 "data": [{
                     "chapters": [
                         {
                             "id": "string",
                             "title": "string",
-                            "number": "number"
+                            "number": "number",
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
@@ -514,9 +429,6 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
         ],
         "top": [
             "id": "string",
-            "malId": "string | null",
-            "kitsuId": "string | null",
-            "tvdbId": "string | null"
             "slug": "string",
             "coverImage": "string",
             "bannerImage": "string",
@@ -579,6 +491,11 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
             "genres": ["string"],
             "tags": ["string"],
             "episodes": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestEpisode": "number"
+                },
                 "data": [{
                     "episodes": [
                         {
@@ -587,19 +504,26 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
                             "title": "string",
                             "hasDub": "boolean",
                             "number": "number",
-                            "isFiller": "boolean"
+                            "isFiller": "boolean",
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
                 }]
             },
             "chapters": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestChapter": "number"
+                },
                 "data": [{
                     "chapters": [
                         {
                             "id": "string",
                             "title": "string",
-                            "number": "number"
+                            "number": "number",
+                            "updatedAt": "number"
                         }
                     ],
                     "providerId": "string"
@@ -614,7 +538,6 @@ The seasonal route has a rate limit of 50 requests per minute unless your API ke
                     "providerId": "string"
                 }
             ]
-        ]
     ]
     ```
     </Tab>

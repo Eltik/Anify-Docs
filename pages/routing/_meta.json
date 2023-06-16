@@ -7,17 +7,10 @@
     "seasonal": "Seasonal",
     "schedule": "Schedule",
     "info": "Info",
-    "info-mal": "Info (MAL)",
     "episodes": "Episodes",
-    "episodes-mal": "Episodes (MAL)",
     "chapters": "Chapters",
-    "chapters-mal": "Chapters (MAL)",
     "sources": "Sources",
-    "sources-mal": "Sources (MAL)",
     "skip-times": "Skip Times",
-    "skip-times-mal": "Skip Times (MAL)",
     "pages": "Pages",
-    "pages-mal": "Pages (MAL)",
-    "episode-covers": "Episode Covers",
-    "episode-covers-mal": "Episode Covers (MAL)"
+    "episode-covers": "Episode Covers"
 }
