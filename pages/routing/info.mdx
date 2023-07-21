@@ -208,17 +208,20 @@ The info route has a rate limit of 75 requests per minute unless your API key is
         "coverImage": "string",
         "bannerImage": "string",
         "trailer": "string | null",
+        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+        "season": "SUMMER | FALL | WINTER | SPRING",
         "title": {
-            "native": "string",
-            "romaji": "string",
-            "english": "string"
+            "native": "string | null",
+            "romaji": "string | null",
+            "english": "string | null"
         },
         "currentEpisode": "number | null",
         "mappings": [
             {
                 "id": "string",
                 "providerId": "string",
-                "similarity": "number"
+                "similarity": "number",
+                "providerType": "ANIME | MANGA | META | INFORMATION"
             },
         ],
         "synonyms": ["string"],
@@ -259,6 +262,16 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                 },
                 "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
             },
+        ],
+        "characters": [
+            {
+                "name": "string",
+                "image": "string",
+                "voiceActor": {
+                    "name": "string",
+                    "image": "string"
+                }
+            }
         ],
         "totalEpisodes": "number | null",
         "totalVolumes": "number | null",

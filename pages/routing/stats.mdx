@@ -5,10 +5,10 @@ title: Stats
 import { Tab, Tabs } from "nextra-theme-docs";
 
 # Stats
-Used for getting the number of anime, manga, and novels stored in the database. Technical details regarding the usage of the stats function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+Used for getting the number of anime, manga, novels, api keys, and skip times stored in the database. Technical details regarding the usage of the stats function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The stats route doesn't have a current rate limit.
+The sources route has a rate limit of 60 requests per minute unless your API key is whitelisted.
 
 ## Route Schema (URL)
 <Tabs items={["Query", "Post"]}>
@@ -137,7 +137,7 @@ The stats route doesn't have a current rate limit.
     <Tab>
     **MIME Type:** `application/json`
     ```json copy=false
-    { "anime": "number", "manga": "number", "novels": "number", "unresolvedEvents": "number" }
+    { "anime": "number", "manga": "number", "novels": "number", "apiKeys": "number", "skipTimes": "number" }
     ```
     </Tab>
 </Tabs>

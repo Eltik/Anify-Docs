@@ -3,6 +3,7 @@
     "start": "Get Started",
     "providers": "Providers",
     "routing": "Routing",
+    "library": "Node Library",
     "license": {
         "title": "License 📜",
         "type": "page",

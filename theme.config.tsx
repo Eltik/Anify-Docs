@@ -8,7 +8,7 @@ const config: DocsThemeConfig = {
     },
     faviconGlyph: "🚧",
     banner: {
-        text: "🚧 The Anify documentation is undergoing reconstruction. Please be patient for all providers to be fully-documented. 🚧",
+        text: "🚧 The Anify documentation is undergoing reconstruction. Please be patient for all features to be fully-documented. 🚧",
     },
     logo: <span>Anify Documentation</span>,
     project: {

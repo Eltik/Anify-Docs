@@ -8,7 +8,7 @@ import { Tab, Tabs } from "nextra-theme-docs";
 Used for returning all unique tags in the database that can be then used for the `search-advanced` route. Technical details regarding the usage of the stats function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The tags route doesn't have a current rate limit.
+The tags route has a rate limit of 80 requests per minute unless your API key is whitelisted.
 
 ## Route Schema (URL)
 <Tabs items={["Query", "Post"]}>
