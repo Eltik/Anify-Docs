@@ -217,14 +217,9 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
     ```json copy=false
     [
         {
-            "providerId": "string",
-            "chapters": [
-                {
-                    "id": "string",
-                    "title": "string",
-                    "number": "number"
-                }
-            ]
+            "url": "string",
+            "index": "number",
+            "headers": { [key: string]: string };
         }
     ]
     ```
