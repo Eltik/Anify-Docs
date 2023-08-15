@@ -1,0 +1,332 @@
+---
+title: Relations
+---
+
+import { Tab, Tabs } from "nextra-theme-docs";
+
+# Relations
+Used for fetching relations for a media. Technical details regarding the usage of the relations function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+
+## Rate Limits
+The relations route has a rate limit of 60 requests per minute unless your API key is whitelisted.
+
+## Route Schema (URL)
+<Tabs items={["Parameters", "Query", "Post"]}>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/relations/{id}?apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/relations/21?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/relations/21?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/relations?id={id}&apikey={apikey}
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/relations?id=21&apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.get(url);
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/relations?id=21&apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.get(url)
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+    <Tab>
+        <>
+            ```
+            https://api.anify.tv/relations?apikey={apikey}
+            ```
+            ```json
+            {
+                "id": "string"
+            }
+            ```
+        </>
+| Parameter |  Type  | Description                                                       | Required? | Default |
+| :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Your API key |    Yes    |  `""`   |
+
+        ## Request Samples
+
+        <Tabs items={["JavaScript", "Python"]}>
+            <Tab>
+                <>
+                    ```js
+                    import dotenv from "dotenv";
+                    dotenv.config();
+
+                    import axios from "axios";
+
+                    const apiKey = process.env.API_KEY ?? "";
+                    const url = `https://api.anify.tv/relations?apikey=${apiKey}`;
+                    const data = async () => {
+                        try {
+                            const { data } = await axios.post(url, {
+                                id: "21"
+                            });
+                            return data;
+                        } catch (err) {
+                            throw new Error(err.message);
+                        }
+                    };
+
+                    console.log(data);
+                    ```
+                </>
+            </Tab>
+            <Tab>
+                <>
+                    ```python
+                    import requests
+                    import os
+                    from dotenv import load_dotenv
+
+                    load_dotenv()
+
+                    os.getenv('API_KEY')
+
+                    url = "https://api.anify.tv/relations?apikey={}".format(os.getenv('API_KEY'))
+                    response = requests.post(url, json={'id': "21"})
+                    data = response.json()
+
+                    print(data)
+                    ```
+                </>
+            </Tab>
+        </Tabs>
+    </Tab>
+</Tabs>
+
+
+## Response Schema
+
+<Tabs items={["200 OK"]}>
+    <Tab>
+    **MIME Type:** `application/json`
+    ```json copy=false
+    [{
+        "id": "string",
+        "slug": "string",
+        "coverImage": "string",
+        "bannerImage": "string",
+        "trailer": "string | null",
+        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+        "season": "SUMMER | FALL | WINTER | SPRING",
+        "title": {
+            "native": "string | null",
+            "romaji": "string | null",
+            "english": "string | null"
+        },
+        "currentEpisode": "number | null",
+        "mappings": [
+            {
+                "id": "string",
+                "providerId": "string",
+                "similarity": "number",
+                "providerType": "ANIME | MANGA | META | INFORMATION"
+            },
+        ],
+        "synonyms": ["string"],
+        "countryOfOrigin": "string",
+        "description": "string",
+        "duration": "number | null",
+        "color": "string | null",
+        "year": "number | null",
+        "rating": {
+            "mal": "number | null",
+            "tvdb": "number | null",
+            "kitsu": "number | null",
+            "anilist": "number | null"
+        },
+        "popularity": {
+            "mal": "number | null",
+            "tvdb": "number | null",
+            "kitsu": "number | null",
+            "anilist": "number | null"
+        },
+        "type": "ANIME | MANGA",
+        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+        "relations": [
+            {
+                "id": "number",
+                "data": {
+                    "id": "number",
+                    "type": "ANIME | MANGA",
+                    "title": {
+                        "userPreferred": "string"
+                    },
+                    "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+                    "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+                    "coverImage": {
+                        "large": "string"
+                    },
+                    "bannerImage": "string | null"
+                },
+                "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
+            },
+        ],
+        "characters": [
+            {
+                "name": "string",
+                "image": "string",
+                "voiceActor": {
+                    "name": "string",
+                    "image": "string"
+                }
+            }
+        ],
+        "totalEpisodes": "number | null",
+        "totalVolumes": "number | null",
+        "totalChapters": "number | null",
+        "genres": ["string"],
+        "tags": ["string"],
+        "episodes": {
+            "latest": {
+                "updatedAt": "number",
+                "latestTitle": "string",
+                "latestEpisode": "number"
+            },
+            "data": [{
+                "episodes": [
+                    {
+                        "id": "string",
+                        "img": "string | null",
+                        "title": "string",
+                        "hasDub": "boolean",
+                        "number": "number",
+                        "isFiller": "boolean",
+                        "updatedAt": "number"
+                    }
+                ],
+                "providerId": "string"
+            }]
+        },
+        "chapters": {
+            "latest": {
+                "updatedAt": "number",
+                "latestTitle": "string",
+                "latestChapter": "number"
+            },
+            "data": [{
+                "chapters": [
+                    {
+                        "id": "string",
+                        "title": "string",
+                        "number": "number",
+                        "updatedAt": "number"
+                    }
+                ],
+                "providerId": "string"
+            }]
+        },
+        "averageRating": "number",
+        "averagePopularity": "number",
+        "artwork": [
+            {
+                "img": "string",
+                "type": "banner | poster | clear_logo | top_banner",
+                "providerId": "string"
+            }
+        ]
+    }]
+    ```
+    </Tab>
+</Tabs>
