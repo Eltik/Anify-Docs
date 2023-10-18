@@ -8,21 +8,21 @@ import { Tab, Tabs } from "nextra-theme-docs";
 Used for querying media. This route will add media to the mapping queue to be mapped if there are no results found (which is why a high rate limit is necessary). Technical details regarding the usage of the search function for anime, manga, and novels can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The search route has a rate limit of 25 requests per minute unless your API key is whitelisted.
+The search route has a rate limit of 25 requests per minute unless you provide a whitelisted API key.
 
 ## Route Schema (URL)
 <Tabs items={["Parameters", "Query", "Post"]}>
     <Tab>
         <>
             ```
-            https://api.anify.tv/search/{type}/{query}?apikey={apikey}
+            https://api.anify.tv/search/{type}/{query}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -30,14 +30,10 @@ The search route has a rate limit of 25 requests per minute unless your API key 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -55,15 +51,9 @@ The search route has a rate limit of 25 requests per minute unless your API key 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search/anime/mushoku%20tensei?apikey={}".format(os.getenv('API_KEY'))
+                    url = "https://api.anify.tv/search/anime/mushoku%20tensei"
                     response = requests.get(url)
                     data = response.json()
 
@@ -76,14 +66,14 @@ The search route has a rate limit of 25 requests per minute unless your API key 
     <Tab>
         <>
             ```
-            https://api.anify.tv/search?type={type}&query={query}&apikey={apikey}
+            https://api.anify.tv/search?type={type}&query={query}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -91,14 +81,10 @@ The search route has a rate limit of 25 requests per minute unless your API key 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei&apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -116,15 +102,9 @@ The search route has a rate limit of 25 requests per minute unless your API key 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei&apikey={}".format(os.getenv('API_KEY'))
+                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei"
                     response = requests.get(url)
                     data = response.json()
 
@@ -137,7 +117,7 @@ The search route has a rate limit of 25 requests per minute unless your API key 
     <Tab>
         <>
             ```
-            https://api.anify.tv/search?apikey={apikey}
+            https://api.anify.tv/search
             ```
             ```json
             {
@@ -150,7 +130,7 @@ The search route has a rate limit of 25 requests per minute unless your API key 
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -158,14 +138,10 @@ The search route has a rate limit of 25 requests per minute unless your API key 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/search`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
@@ -186,15 +162,9 @@ The search route has a rate limit of 25 requests per minute unless your API key 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search?apikey={}".format(os.getenv('API_KEY'))
+                    url = "https://api.anify.tv/search"
                     response = requests.post(url, json={'type': "anime", 'query': "mushoku tensei"})
                     data = response.json()
 
@@ -209,135 +179,166 @@ The search route has a rate limit of 25 requests per minute unless your API key 
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "400 Bad Request", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    [
-        "id": "string",
-        "slug": "string",
-        "coverImage": "string",
-        "bannerImage": "string",
-        "trailer": "string | null",
-        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
-        "season": "SUMMER | FALL | WINTER | SPRING",
-        "title": {
-            "native": "string | null",
-            "romaji": "string | null",
-            "english": "string | null"
-        },
-        "currentEpisode": "number | null",
-        "mappings": [
-            {
-                "id": "string",
-                "providerId": "string",
-                "similarity": "number",
-                "providerType": "ANIME | MANGA | META | INFORMATION"
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the request was successful.`
+        ```json copy=false
+        [{
+            "id": "string",
+            "slug": "string",
+            "coverImage": "string",
+            "bannerImage": "string",
+            "trailer": "string | null",
+            "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+            "season": "SUMMER | FALL | WINTER | SPRING",
+            "title": {
+                "native": "string | null",
+                "romaji": "string | null",
+                "english": "string | null"
             },
-        ],
-        "synonyms": ["string"],
-        "countryOfOrigin": "string",
-        "description": "string",
-        "duration": "number | null",
-        "color": "string | null",
-        "year": "number | null",
-        "rating": {
-            "mal": "number | null",
-            "tvdb": "number | null",
-            "kitsu": "number | null",
-            "anilist": "number | null"
-        },
-        "popularity": {
-            "mal": "number | null",
-            "tvdb": "number | null",
-            "kitsu": "number | null",
-            "anilist": "number | null"
-        },
-        "type": "ANIME | MANGA",
-        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-        "relations": [
-            {
-                "id": "number",
-                "data": {
-                    "id": "number",
-                    "type": "ANIME | MANGA",
-                    "title": {
-                        "userPreferred": "string"
-                    },
-                    "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-                    "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
-                    "coverImage": {
-                        "large": "string"
-                    },
-                    "bannerImage": "string | null"
+            "currentEpisode": "number | null",
+            "mappings": [
+                {
+                    "id": "string",
+                    "providerId": "string",
+                    "similarity": "number",
+                    "providerType": "ANIME | MANGA | META | INFORMATION"
                 },
-                "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
+            ],
+            "synonyms": ["string"],
+            "countryOfOrigin": "string",
+            "description": "string",
+            "duration": "number | null",
+            "color": "string | null",
+            "year": "number | null",
+            "rating": {
+                "mal": "number | null",
+                "tvdb": "number | null",
+                "kitsu": "number | null",
+                "anilist": "number | null",
+                "anidb": "number | null",
+                "tmdb": "number | null",
+                "comick": "number | null",
+                "mangadex": "number | null",
+                "novelupdates": "number | null"
             },
-        ],
-        "characters": [
-            {
-                "name": "string",
-                "image": "string",
-                "voiceActor": {
+            "popularity": {
+                "mal": "number | null",
+                "tvdb": "number | null",
+                "kitsu": "number | null",
+                "anilist": "number | null",
+                "anidb": "number | null",
+                "tmdb": "number | null",
+                "comick": "number | null",
+                "mangadex": "number | null",
+                "novelupdates": "number | null"
+            },
+            "type": "ANIME | MANGA",
+            "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+            "relations": [
+                {
+                    "id": "number",
+                    "data": {
+                        "id": "number",
+                        "type": "ANIME | MANGA",
+                        "title": {
+                            "userPreferred": "string"
+                        },
+                        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+                        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+                        "coverImage": {
+                            "large": "string"
+                        },
+                        "bannerImage": "string | null"
+                    },
+                    "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
+                },
+            ],
+            "characters": [
+                {
                     "name": "string",
-                    "image": "string"
+                    "image": "string",
+                    "voiceActor": {
+                        "name": "string",
+                        "image": "string"
+                    }
                 }
-            }
-        ],
-        "totalEpisodes": "number | null",
-        "totalVolumes": "number | null",
-        "totalChapters": "number | null",
-        "genres": ["string"],
-        "tags": ["string"],
-        "episodes": {
-            "latest": {
-                "updatedAt": "number",
-                "latestTitle": "string",
-                "latestEpisode": "number"
+            ],
+            "totalEpisodes": "number | null",
+            "totalVolumes": "number | null",
+            "totalChapters": "number | null",
+            "genres": ["string"],
+            "tags": ["string"],
+            "episodes": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestEpisode": "number"
+                },
+                "data": [{
+                    "episodes": [
+                        {
+                            "id": "string",
+                            "img": "string | null",
+                            "title": "string",
+                            "hasDub": "boolean",
+                            "description": "string | null",
+                            "rating": "number | null",
+                            "number": "number",
+                            "isFiller": "boolean",
+                            "updatedAt": "number"
+                        }
+                    ],
+                    "providerId": "string"
+                }]
             },
-            "data": [{
-                "episodes": [
-                    {
-                        "id": "string",
-                        "img": "string | null",
-                        "title": "string",
-                        "hasDub": "boolean",
-                        "number": "number",
-                        "isFiller": "boolean",
-                        "updatedAt": "number"
-                    }
-                ],
-                "providerId": "string"
-            }]
-        },
-        "chapters": {
-            "latest": {
-                "updatedAt": "number",
-                "latestTitle": "string",
-                "latestChapter": "number"
+            "chapters": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestChapter": "number"
+                },
+                "data": [{
+                    "chapters": [
+                        {
+                            "id": "string",
+                            "title": "string",
+                            "number": "number",
+                            "rating": "number | null",
+                            "updatedAt": "number",
+                            "mixdrop": "string | null"
+                        }
+                    ],
+                    "providerId": "string"
+                }]
             },
-            "data": [{
-                "chapters": [
-                    {
-                        "id": "string",
-                        "title": "string",
-                        "number": "number",
-                        "updatedAt": "number"
-                    }
-                ],
-                "providerId": "string"
-            }]
-        },
-        "averageRating": "number",
-        "averagePopularity": "number",
-        "artwork": [
-            {
-                "img": "string",
-                "type": "banner | poster | clear_logo | top_banner",
-                "providerId": "string"
-            }
-        ]
-    ]
-    ```
+            "averageRating": "number",
+            "averagePopularity": "number",
+            "artwork": [
+                {
+                    "img": "string",
+                    "type": "banner | poster | clear_logo | top_banner",
+                    "providerId": "string"
+                }
+            ]
+        }]
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the the "type" parameter isn't given/when an invalid "type" parameter is given or when no "query" parameter is given.`
+        ```json copy=false
+        { "error": "No type provided." }
+        { "error": "Invalid type provided." }
+        { "error": "No query provided." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>

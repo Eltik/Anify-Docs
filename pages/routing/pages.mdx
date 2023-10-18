@@ -15,15 +15,16 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
     <Tab>
         <>
             ```
-            https://api.anify.tv/pages?providerId={providerId}&readId={readId}&apikey={apikey}
+            https://api.anify.tv/pages/{id}/{chapterNumber}/{providerId}/{readId}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id    | string | The AniList ID of the show you're fetching sources for. |    Yes    |  `""`   |
+|   id    | string | The media ID of the manga/novel you're fetching pages for. |    Yes    |  `""`   |
+|   chapterNumber    | number | The chapter number of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (number field). |    Yes    |  `""`   |
 |   providerId   | string | The provider ID of the manga/novel you're fetching pages for. Ex. `mangadex`. Can be obtained from `/chapters`. |    Yes    |  `""`   |
 |   readId    | string | The read ID of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (ID field). |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -31,13 +32,10 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
                     const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/pages/30002/mangadex/${encodeURIComponent("d0c34c6a-9a5d-4783-b5a3-dc3d11799de7")}&apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/pages/801513ba-a712-498c-8f57-cae55b38cc92/384/mangasee/${encodeURIComponent("/read-online/Berserk-chapter-374")}`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -55,14 +53,8 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/pages/30002/mangadex/d0c34c6a-9a5d-4783-b5a3-dc3d11799de7&apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/pages/801513ba-a712-498c-8f57-cae55b38cc92/384/mangasee/%2Fread-online%2FBerserk-chapter-374"
                     response = requests.get(url)
                     data = response.json()
 
@@ -75,15 +67,16 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
     <Tab>
         <>
             ```
-            https://api.anify.tv/pages?providerId={providerId}&readId={readId}&apikey={apikey}
+            https://api.anify.tv/pages?id={id}&chapterNumber{chapterNumber}providerId={providerId}&readId={readId}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id    | string | The AniList ID of the show you're fetching sources for. |    Yes    |  `""`   |
+|   id    | string | The media ID of the manga/novel you're fetching pages for. |    Yes    |  `""`   |
+|   chapterNumber    | number | The chapter number of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (number field). |    Yes    |  `""`   |
 |   providerId   | string | The provider ID of the manga/novel you're fetching pages for. Ex. `mangadex`. Can be obtained from `/chapters`. |    Yes    |  `""`   |
 |   readId    | string | The read ID of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (ID field). |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -91,13 +84,9 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/pages?id=30002&providerId=mangadex&readId=${encodeURIComponent("d0c34c6a-9a5d-4783-b5a3-dc3d11799de7")}&apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/pages?id=801513ba-a712-498c-8f57-cae55b38cc92&chapterNumber=384&providerId=mangasee&readId=${encodeURIComponent("/read-online/Berserk-chapter-374")}`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -115,14 +104,8 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/pages?id=30002&providerId=mangadex&readId=d0c34c6a-9a5d-4783-b5a3-dc3d11799de7&apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/pages?id=801513ba-a712-498c-8f57-cae55b38cc92&chapterNumber=384&providerId=mangasee&readId=%2Fread-online%2FBerserk-chapter-374"
                     response = requests.get(url)
                     data = response.json()
 
@@ -135,10 +118,12 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
     <Tab>
         <>
             ```
-            https://api.anify.tv/pages?apikey={apikey}
+            https://api.anify.tv/pages
             ```
             ```json
             {
+                "id": "string",
+                "chapterNumber": "number",
                 "providerId": "string",
                 "readId": "string"
             }
@@ -146,10 +131,11 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id    | string | The AniList ID of the show you're fetching sources for. |    Yes    |  `""`   |
+|   id    | string | The media ID of the manga/novel you're fetching pages for. |    Yes    |  `""`   |
+|   chapterNumber    | number | The chapter number of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (number field). |    Yes    |  `""`   |
 |   providerId   | string | The provider ID of the manga/novel you're fetching pages for. Ex. `mangadex`. Can be obtained from `/chapters`. |    Yes    |  `""`   |
 |   readId    | string | The read ID of the manga/novel you're fetching pages for. Can be obtained from `/chapters` (ID field). |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -157,19 +143,16 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/pages?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/pages`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
-                                id: "30002",
-                                providerId: "mangadex",
-                                watchId: "d0c34c6a-9a5d-4783-b5a3-dc3d11799de7"
+                                id: "801513ba-a712-498c-8f57-cae55b38cc92",
+                                providerId: "mangasee",
+                                chapterNumber: 384,
+                                readId: "/read-online/Berserk-chapter-374"
                             });
                             return data;
                         } catch (err) {
@@ -185,18 +168,13 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/pages?apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/pages"
                     response = requests.post(url, json={
-                        "id": "30002",
-                        "providerId": "mangadex",
-                        "watchId": "d0c34c6a-9a5d-4783-b5a3-dc3d11799de7"
+                        "id": "801513ba-a712-498c-8f57-cae55b38cc92",
+                        "providerId": "mangasee",
+                        "chapterNumber": 384,
+                        "readId": "/read-online/Berserk-chapter-374"
                     })
                     data = response.json()
 
@@ -211,17 +189,35 @@ The pages route has a rate limit of 60 requests per minute unless your API key i
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "400 Bad Request", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    [
-        {
-            "url": "string",
-            "index": "number",
-            "headers": { [key: string]: string };
-        }
-    ]
-    ```
+        **MIME Type:** `application/json`
+        **Reason:** `Occurs when the request was successful.`
+        ```json copy=false
+        [
+            {
+                "url": "string",
+                "index": "number",
+                "headers": { [key: string]: string };
+            }
+        ]
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the the "id" parameter, "chapterNumber" parameter, "providerId" parameter, or "readId" parameter aren't given.`
+        ```json copy=false
+        { "error": "No ID provided." }
+        { "error": "No chapter number provided." }
+        { "error": "No provider ID provided." }
+        { "error": "No read ID provided." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>

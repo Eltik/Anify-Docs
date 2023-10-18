@@ -15,13 +15,13 @@ The relations route has a rate limit of 60 requests per minute unless your API k
     <Tab>
         <>
             ```
-            https://api.anify.tv/relations/{id}?apikey={apikey}
+            https://api.anify.tv/relations/{id}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -29,13 +29,9 @@ The relations route has a rate limit of 60 requests per minute unless your API k
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/relations/21?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -53,14 +49,8 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/relations/21?apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900"
                     response = requests.get(url)
                     data = response.json()
 
@@ -73,13 +63,13 @@ The relations route has a rate limit of 60 requests per minute unless your API k
     <Tab>
         <>
             ```
-            https://api.anify.tv/relations?id={id}&apikey={apikey}
+            https://api.anify.tv/relations?id={id}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -87,13 +77,9 @@ The relations route has a rate limit of 60 requests per minute unless your API k
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/relations?id=21&apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -111,14 +97,8 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/relations?id=21&apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900"
                     response = requests.get(url)
                     data = response.json()
 
@@ -131,7 +111,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
     <Tab>
         <>
             ```
-            https://api.anify.tv/relations?apikey={apikey}
+            https://api.anify.tv/relations
             ```
             ```json
             {
@@ -141,8 +121,8 @@ The relations route has a rate limit of 60 requests per minute unless your API k
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -150,17 +130,13 @@ The relations route has a rate limit of 60 requests per minute unless your API k
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/relations?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/relations`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
-                                id: "21"
+                                id: "a25e46ec-30f7-4db6-89df-cacbc1d9a900"
                             });
                             return data;
                         } catch (err) {
@@ -176,15 +152,9 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/relations?apikey={}".format(os.getenv('API_KEY'))
-                    response = requests.post(url, json={'id': "21"})
+                    
+                    url = "https://api.anify.tv/relations"
+                    response = requests.post(url, json={'id': "a25e46ec-30f7-4db6-89df-cacbc1d9a900"})
                     data = response.json()
 
                     print(data)
@@ -198,135 +168,173 @@ The relations route has a rate limit of 60 requests per minute unless your API k
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "400 Bad Request", "404 Not Found", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    [{
-        "id": "string",
-        "slug": "string",
-        "coverImage": "string",
-        "bannerImage": "string",
-        "trailer": "string | null",
-        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
-        "season": "SUMMER | FALL | WINTER | SPRING",
-        "title": {
-            "native": "string | null",
-            "romaji": "string | null",
-            "english": "string | null"
-        },
-        "currentEpisode": "number | null",
-        "mappings": [
-            {
-                "id": "string",
-                "providerId": "string",
-                "similarity": "number",
-                "providerType": "ANIME | MANGA | META | INFORMATION"
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the request was successful.`
+        
+        ```json copy=false
+        [{
+            "id": "string",
+            "slug": "string",
+            "coverImage": "string",
+            "bannerImage": "string",
+            "trailer": "string | null",
+            "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+            "season": "SUMMER | FALL | WINTER | SPRING",
+            "title": {
+                "native": "string | null",
+                "romaji": "string | null",
+                "english": "string | null"
             },
-        ],
-        "synonyms": ["string"],
-        "countryOfOrigin": "string",
-        "description": "string",
-        "duration": "number | null",
-        "color": "string | null",
-        "year": "number | null",
-        "rating": {
-            "mal": "number | null",
-            "tvdb": "number | null",
-            "kitsu": "number | null",
-            "anilist": "number | null"
-        },
-        "popularity": {
-            "mal": "number | null",
-            "tvdb": "number | null",
-            "kitsu": "number | null",
-            "anilist": "number | null"
-        },
-        "type": "ANIME | MANGA",
-        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-        "relations": [
-            {
-                "id": "number",
-                "data": {
-                    "id": "number",
-                    "type": "ANIME | MANGA",
-                    "title": {
-                        "userPreferred": "string"
-                    },
-                    "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
-                    "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
-                    "coverImage": {
-                        "large": "string"
-                    },
-                    "bannerImage": "string | null"
+            "currentEpisode": "number | null",
+            "mappings": [
+                {
+                    "id": "string",
+                    "providerId": "string",
+                    "similarity": "number",
+                    "providerType": "ANIME | MANGA | META | INFORMATION"
                 },
-                "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
+            ],
+            "synonyms": ["string"],
+            "countryOfOrigin": "string",
+            "description": "string",
+            "duration": "number | null",
+            "color": "string | null",
+            "year": "number | null",
+            "rating": {
+                "mal": "number | null",
+                "tvdb": "number | null",
+                "kitsu": "number | null",
+                "anilist": "number | null",
+                "anidb": "number | null",
+                "tmdb": "number | null",
+                "comick": "number | null",
+                "mangadex": "number | null",
+                "novelupdates": "number | null"
             },
-        ],
-        "characters": [
-            {
-                "name": "string",
-                "image": "string",
-                "voiceActor": {
+            "popularity": {
+                "mal": "number | null",
+                "tvdb": "number | null",
+                "kitsu": "number | null",
+                "anilist": "number | null",
+                "anidb": "number | null",
+                "tmdb": "number | null",
+                "comick": "number | null",
+                "mangadex": "number | null",
+                "novelupdates": "number | null"
+            },
+            "type": "ANIME | MANGA",
+            "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+            "relations": [
+                {
+                    "id": "number",
+                    "data": {
+                        "id": "number",
+                        "type": "ANIME | MANGA",
+                        "title": {
+                            "userPreferred": "string"
+                        },
+                        "format": "TV | TV_SHORT | MOVIE | SPECIAL | OVA | ONA | MUSIC | MANGA | NOVEL | ONE_SHOT | UNKNOWN",
+                        "status": "FINISHED | RELEASING | NOT_YET_RELEASED | CANCELLED | HIATUS",
+                        "coverImage": {
+                            "large": "string"
+                        },
+                        "bannerImage": "string | null"
+                    },
+                    "type": "ADAPTATION | PREQUEL | SEQUEL | PARENT | SIDE_STORY | CHARACTER | SUMMARY | ALTERNATIVE | SPIN_OFF | OTHER | SOURCE | COMPILATION | CONTAINS"
+                },
+            ],
+            "characters": [
+                {
                     "name": "string",
-                    "image": "string"
+                    "image": "string",
+                    "voiceActor": {
+                        "name": "string",
+                        "image": "string"
+                    }
                 }
-            }
-        ],
-        "totalEpisodes": "number | null",
-        "totalVolumes": "number | null",
-        "totalChapters": "number | null",
-        "genres": ["string"],
-        "tags": ["string"],
-        "episodes": {
-            "latest": {
-                "updatedAt": "number",
-                "latestTitle": "string",
-                "latestEpisode": "number"
+            ],
+            "totalEpisodes": "number | null",
+            "totalVolumes": "number | null",
+            "totalChapters": "number | null",
+            "genres": ["string"],
+            "tags": ["string"],
+            "episodes": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestEpisode": "number"
+                },
+                "data": [{
+                    "episodes": [
+                        {
+                            "id": "string",
+                            "img": "string | null",
+                            "title": "string",
+                            "hasDub": "boolean",
+                            "description": "string | null",
+                            "rating": "number | null",
+                            "number": "number",
+                            "isFiller": "boolean",
+                            "updatedAt": "number"
+                        }
+                    ],
+                    "providerId": "string"
+                }]
             },
-            "data": [{
-                "episodes": [
-                    {
-                        "id": "string",
-                        "img": "string | null",
-                        "title": "string",
-                        "hasDub": "boolean",
-                        "number": "number",
-                        "isFiller": "boolean",
-                        "updatedAt": "number"
-                    }
-                ],
-                "providerId": "string"
-            }]
-        },
-        "chapters": {
-            "latest": {
-                "updatedAt": "number",
-                "latestTitle": "string",
-                "latestChapter": "number"
+            "chapters": {
+                "latest": {
+                    "updatedAt": "number",
+                    "latestTitle": "string",
+                    "latestChapter": "number"
+                },
+                "data": [{
+                    "chapters": [
+                        {
+                            "id": "string",
+                            "title": "string",
+                            "number": "number",
+                            "rating": "number | null",
+                            "updatedAt": "number",
+                            "mixdrop": "string | null"
+                        }
+                    ],
+                    "providerId": "string"
+                }]
             },
-            "data": [{
-                "chapters": [
-                    {
-                        "id": "string",
-                        "title": "string",
-                        "number": "number",
-                        "updatedAt": "number"
-                    }
-                ],
-                "providerId": "string"
-            }]
-        },
-        "averageRating": "number",
-        "averagePopularity": "number",
-        "artwork": [
-            {
-                "img": "string",
-                "type": "banner | poster | clear_logo | top_banner",
-                "providerId": "string"
-            }
-        ]
-    }]
-    ```
+            "averageRating": "number",
+            "averagePopularity": "number",
+            "artwork": [
+                {
+                    "img": "string",
+                    "type": "banner | poster | clear_logo | top_banner",
+                    "providerId": "string"
+                }
+            ],
+            "relationType": "string"
+        }]
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the the "id" parameter isn't given.`
+        ```json copy=false
+        { "error": "No ID provided." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the provided ID isn't found in the database.`
+        ```json copy=false
+        { "error": "No data found." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>

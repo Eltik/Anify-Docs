@@ -1,19 +1,17 @@
 {
     "stats": "Stats",
-    "genres": "Genres",
-    "tags": "Tags",
     "searching": "Searching",
     "searching-advanced": "Searching (Advanced)",
     "seasonal": "Seasonal",
     "schedule": "Schedule",
     "recent": "Recent Episodes/Chapters",
     "info": "Info",
-    "media": "Media",
     "relations": "Relations",
     "episodes": "Episodes",
     "chapters": "Chapters",
     "sources": "Sources",
     "skip-times": "Skip Times",
     "pages": "Pages",
-    "episode-covers": "Episode Covers"
+    "mixdrop": "Mixdrop",
+    "content-metadata": "Content Metadata"
 }

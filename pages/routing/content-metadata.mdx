@@ -1,27 +1,27 @@
 ---
-title: Episode Covers
+title: Content Metadata
 ---
 
 import { Tab, Tabs } from "nextra-theme-docs";
 
-# Episode Covers
-Used for querying episode covers for a media. Technical details regarding the usage of the episode covers function for anime can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+# Content Metadata
+Used for querying content metadata such as episode covers, episode description, chapter info, etc. for a media. Technical details regarding the usage of the content metadata function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The episode covers route has a rate limit of 40 requests per minute unless your API key is whitelisted.
+The content metadata route has a rate limit of 50 requests per minute unless your API key is whitelisted.
 
 ## Route Schema (URL)
 <Tabs items={["Parameters", "Query", "Post"]}>
     <Tab>
         <>
             ```
-            https://api.anify.tv/episode-covers/{id}?apikey={apikey}
+            https://api.anify.tv/content-metadata/{id}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are getting content metadata for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -29,13 +29,9 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/episode-covers/108465?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/content-metadata/108465`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -53,14 +49,8 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/episode-covers/108465?apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/content-metadata/108465"
                     response = requests.get(url)
                     data = response.json()
 
@@ -73,13 +63,13 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
     <Tab>
         <>
             ```
-            https://api.anify.tv/episode-covers?id={id}&apikey={apikey}
+            https://api.anify.tv/content-metadata?id={id}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are getting content metadata for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -87,13 +77,9 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/episode-covers?id=108465&apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/content-metadata?id=108465`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -111,14 +97,8 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/episode-covers?id=108465&apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/content-metadata?id=108465"
                     response = requests.get(url)
                     data = response.json()
 
@@ -131,7 +111,7 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
     <Tab>
         <>
             ```
-            https://api.anify.tv/episode-covers?apikey={apikey}
+            https://api.anify.tv/content-metadata
             ```
             ```json
             {
@@ -141,8 +121,8 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   id   | string | The AniList ID of the item you are looking for. |    Yes    |  `""`   |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   id   | string | The media ID of the item you are getting content metadata for. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -150,13 +130,9 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/episode-covers?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/content-metadata`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
@@ -176,14 +152,8 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/episode-covers?apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/content-metadata"
                     response = requests.post(url, json={'id': "108465"})
                     data = response.json()
 
@@ -198,16 +168,44 @@ The episode covers route has a rate limit of 40 requests per minute unless your 
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "400 Bad Request", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    [
-        {
-            "episode": "number",
-            "img": "string"
-        }
-    ]
-    ```
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the request was successful.`
+        
+        ```json copy=false
+        [
+            {
+                "providerId": "string",
+                "data": [
+                    {
+                        "id": "string",
+                        "isFiller": "boolean | undefined",
+                        "number": "number",
+                        "title": "string",
+                        "img": "string | null",
+                        "hasDub": "boolean",
+                        "description": "string | null",
+                        "rating": "number | null",
+                        "updatedAt": "number | undefined"
+                    }
+                ]
+            }
+        ]
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the the "id" parameter isn't given.`
+        ```json copy=false
+        { "error": "No ID provided." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>

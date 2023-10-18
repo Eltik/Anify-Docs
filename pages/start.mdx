@@ -8,30 +8,3 @@ const axios = require("axios");
 await axios.get("https://api.anify.tv", { headers: {"Content-Type": "application/json" }});
 ```
 Most of this documentation will feature examples in NodeJS, but a lot of them can be easily replicated in other languages.
-
-## API Keys
-To use the API, you need an API key. While I'd like to make this API open to everyone, there is potential issues with DDoSing and other malicious attacks. To get an API key, join the [Discord](https://anify.tv/discord) and obtain one in the `#api` channel.
-
-## API Key usage
-For almost all routes for the API, you will need to append the `apikey` query parameter to your request. An example is shown below:
-```javascript
-const axios = require("axios");
-await axios.get(`https://api.anify.tv/stats?apikey=abc123def456`, { headers: {"Content-Type": "application/json" }});
-```
-If you do not append the `apikey` query parameter or input an invalid API key, you will receive one of the following errors:
-<Tabs items={["No API Key", "Invalid API key"]}>
-    <Tab>
-        <>
-            ```json
-            { "error": "No API key provided." }
-            ```
-        </>
-    </Tab>
-    <Tab>
-        <>
-            ```json
-            { "error": "Invalid API key." }
-            ```
-        </>
-    </Tab>
-</Tabs>

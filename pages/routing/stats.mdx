@@ -8,32 +8,28 @@ import { Tab, Tabs } from "nextra-theme-docs";
 Used for getting the number of anime, manga, novels, api keys, and skip times stored in the database. Technical details regarding the usage of the stats function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The sources route has a rate limit of 60 requests per minute unless your API key is whitelisted.
+The stats route has a rate limit of 60 requests per minute unless you provide a whitelisted API key.
 
 ## Route Schema (URL)
 <Tabs items={["Query", "Post"]}>
     <Tab>
         <>
             ```
-            https://api.anify.tv/stats?apikey={apikey}
+            https://api.anify.tv/stats
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
         <Tabs items={["JavaScript", "Python"]}>
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/stats?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/stats`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -51,14 +47,8 @@ The sources route has a rate limit of 60 requests per minute unless your API key
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
 
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/stats?apikey={}".format(os.getenv('API_KEY'))
+                    url = "https://api.anify.tv/stats"
                     response = requests.get(url)
                     data = response.json()
 
@@ -71,7 +61,7 @@ The sources route has a rate limit of 60 requests per minute unless your API key
     <Tab>
         <>
             ```
-            https://api.anify.tv/stats?apikey={apikey}
+            https://api.anify.tv/stats
             ```
             ```json
             {}
@@ -79,7 +69,7 @@ The sources route has a rate limit of 60 requests per minute unless your API key
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -87,13 +77,9 @@ The sources route has a rate limit of 60 requests per minute unless your API key
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/stats?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/stats`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url);
@@ -111,14 +97,8 @@ The sources route has a rate limit of 60 requests per minute unless your API key
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
 
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/stats?apikey={}".format(os.getenv('API_KEY'))
+                    url = "https://api.anify.tv/stats"
                     response = requests.post(url)
                     data = response.json()
 
@@ -133,11 +113,26 @@ The sources route has a rate limit of 60 requests per minute unless your API key
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "404 Not Found", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    { "anime": "number", "manga": "number", "novels": "number", "apiKeys": "number", "skipTimes": "number" }
-    ```
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the request was successful.`
+        ```json copy=false
+        { "anime": "number", "manga": "number", "novels": "number", "apiKeys": "number", "skipTimes": "number" }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when no stats are found in the database.`
+        ```json copy=false
+        { "error": "No data found." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>

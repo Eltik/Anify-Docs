@@ -1,35 +1,40 @@
 # Providers
 Anify uses multiple providers as its sources. The following list are providers that Anify uses.
 
+## Base Providers
+**Important note**: Base providers use ID's derived from the website itself. For example, if MangaDex is a base provider, the `id` field in the information response will be the MangaDex ID. Base providers also take information directly from the website itself for other data. For example, seasonal data is taken directly from AniList for `/seasonal` routes. The base provider will usually contain more information than any other provider (eg. TVDB, TMDB, etc.); hence why it is a "base" provider.
+
+[AniList:](https://anilist.co) Used for anime mappings. Contains very detailed information of every single anime and is used by many developers.
+
+[MangaDex:](https://mangadex.org) Doesn't contain as much information as ComicK, but generally gives more accurate information and mappings.
+
+[NovelUpdates:](https://novelupdates.com) The official site for fan-translated novels. What it lacks for in information it makes up for its large library of novels.
+
 ## Anime
 
-[9anime:](https://9anime.pl) Contains a large library with really fast streaming links and dubbed anime.
+[9anime:](https://aniwave.ws) Contains a large library with really fast streaming links and sometimes soft subs. Now known as Aniwave.
 
 [AnimePahe:](https://animepahe.com) Often provides high quality anime streaming links.
 
-[GogoAnime:](https://gogoanime.cl) One of the more well-known/established providers. Scraped by many anime websites.
+[GogoAnime:](https://gogoanimehd.io) One of the more well-known/established providers. Scraped by many anime websites. No watermark.
 
-[Zoro:](https://aniwatch.to) A well-known site named after Roronoa Zoro from ONE PIECE. Contains soft subs and relatively high-quality streaming links.
+[Zoro:](https://aniwatch.to) Contains soft subs and relatively high-quality streaming links. No known as Aniwatch.
 
 ## Manga
 
 [MangaDex:](https://mangadex.org) Hosts 10,000s of chapters of scanlated manga. Generally very high-quality (doesn't compress images).
 
-[ComicK:](https://comick.app) Contains a very large library of scanlated manga with high-quality images.
-
-[MangaBuddy:](https://mangabuddy.com) Popular website for reading, but smaller library.
+[ComicK:](https://comick.app) Contains arguably the largest library of scanlated manga with high-quality images.
 
 [MangaSee123:](https://mangasee123.com) Has a large library of over 6,000 manga available in English.
 
-[ColoredManga:](https://coloredmanga.com) Very high-quality images. Relatively small library but contains some popular manga.
+[MangaFox:](https://fanfox.net) Relatively large library for alternative manga. Contains some popular manga.
+
+[MangaFire:](https://mangafire.to) A website created by the developres of 9anime. Contains custom-uploaded pages (with watermarks, however).
 
 ## Light Novels
 
-[NovelBuddy:](https://novelbuddy.com) Contains fan-translated novels as well as some officially translated novels.
-
-[NovelUpdates:](https://novelupdates.com) The official website for fan-translated novels. Contains an extremely large library.
-
-[ReadLightNovels:](https://readlightnovels.net) Small library of novels but contains relatively high-quality translations.
+[NovelUpdates:](https://novelupdates.com) The official website for fan-translated novels. Contains almost every single web and light novel available.
 
 [JNovels:](https://jnovels.com) Has almost every officially translated light novel available for download. Also contains web novels.
 
@@ -39,20 +44,30 @@ Anify uses multiple providers as its sources. The following list are providers t
 
 [MyAnimeList (MAL):](https://myanimelist.net) Similar to AniList. Used for mainly edge-cases for synonyms and accurate mapping.
 
-[The TV Database (TVDB):](https://thetvdb.com) Used for banners/images and information mapping.
+[The TV Database (TVDB):](https://thetvdb.com) Used for banners/images/artwork and information mapping.
 
-[Kitsu:](https://kitsu.io) Similar to AniList. Used for mainly cover images and edge-cases for synonyms and accurate mapping.
+[The Movie Database (TMDB):](https://www.themoviedb.org) Used for banners/images/artwork and information mapping.
 
-[Simkl:](https://simkl.com) Used for episode covers as well as information mapping.
+[Kitsu:](https://kitsu.io) Similar to AniList. Used mainly for cover images and synonyms to get more accurate mapping.
+
+[AniDB:](https://anidb.net) Similar to AniList. Used mainly for synonyms to get more accurate mapping.
+
+[NovelUpdates:](https://novelupdates.com) Used for detailed information on novels.
+
+[ComicK:](https://comick.app) Used for detailed information on manga.
+
+[MangaDex:](https://mangadex.org) Used for detailed information on manga.
 
 ## Meta
 
 [AniList:](https://anilist.co) A metadata provider used to aggregate data from Anilist and map information to other providers.
 
-[The Movie Database (TMDB):](https://www.themoviedb.org) Used for banners/images and information mapping.
+[MyAnimeList (MAL):](https://myanimelist.net) Similar to AniList. Used for mainly edge-cases for synonyms and accurate mapping.
 
 [The TV Database (TVDB):](https://thetvdb.com) Used for banners/images and information mapping.
 
-[Kitsu:](https://kitsu.io) Similar to AniList. Used for mainly cover images and edge-cases for synonyms and accurate mapping.
+[The Movie Database (TMDB):](https://www.themoviedb.org) Used for banners/images and information mapping.
 
-[Simkl:](https://simkl.com) Used for episode covers as well as information mapping.
+[Kitsu:](https://kitsu.io) Similar to AniList. Used mainly for cover images and synonyms to get more accurate mapping.
+
+[AniDB:](https://anidb.net) Similar to AniList. Used mainly for synonyms to get more accurate mapping.

@@ -5,7 +5,7 @@ title: Schedule
 import { Tab, Tabs } from "nextra-theme-docs";
 
 # Schedule
-Used for querying AniList's upcoming schedule route and returning media. Technical details regarding the usage of the schedule function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+**This route is not stable**. Used for querying AniList's upcoming schedule route and returning media. Technical details regarding the usage of the schedule function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
 The schedule route has a rate limit of 60 requests per minute unless your API key is whitelisted.
@@ -15,12 +15,13 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
     <Tab>
         <>
             ```
-            https://api.anify.tv/schedule?apikey={apikey}
+            https://api.anify.tv/schedule?type={type}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -28,13 +29,9 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/schedule?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/schedule?type=anime`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -52,14 +49,8 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/schedule?apikey={}".format(os.getenv('API_KEY'))
+                    
+                    url = "https://api.anify.tv/schedule?type=anime"
                     response = requests.get(url)
                     data = response.json()
 
@@ -72,15 +63,18 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
     <Tab>
         <>
             ```
-            https://api.anify.tv/schedule?apikey={apikey}
+            https://api.anify.tv/schedule
             ```
             ```json
-            {}
+            {
+                "type": "string"
+            }
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
-|   apikey  | string | Your API key |    Yes    |  `""`   |
+|   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
 
@@ -88,16 +82,14 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
             <Tab>
                 <>
                     ```js
-                    import dotenv from "dotenv";
-                    dotenv.config();
-
                     import axios from "axios";
 
-                    const apiKey = process.env.API_KEY ?? "";
-                    const url = `https://api.anify.tv/schedule?apikey=${apiKey}`;
+                    const url = `https://api.anify.tv/schedule`;
                     const data = async () => {
                         try {
-                            const { data } = await axios.post(url);
+                            const { data } = await axios.post(url, {
+                                type: "anime"
+                            });
                             return data;
                         } catch (err) {
                             throw new Error(err.message);
@@ -112,15 +104,9 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                 <>
                     ```python
                     import requests
-                    import os
-                    from dotenv import load_dotenv
-
-                    load_dotenv()
-
-                    os.getenv('API_KEY')
-
-                    url = "https://api.anify.tv/schedule?apikey={}".format(os.getenv('API_KEY'))
-                    response = requests.post(url)
+                    
+                    url = "https://api.anify.tv/schedule"
+                    response = requests.post(url, json={'type': "anime"})
                     data = response.json()
 
                     print(data)
