@@ -21,6 +21,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -69,6 +70,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -122,6 +124,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples

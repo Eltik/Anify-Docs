@@ -21,6 +21,7 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -120,24 +121,40 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
 
 ## Response Schema
 
-<Tabs items={["200 OK"]}>
+<Tabs items={["200 OK", "400 Bad Request", "500 Internal Server Error"]}>
     <Tab>
-    **MIME Type:** `application/json`
-    ```json copy=false
-    {
-        "sundaySchedule": [
-            "id": "string",
-            ...
-            "airingEpisode": "number",
-            "airingAt": "date"
-        ],
-        "mondaySchedule": [...],
-        "tuesdaySchedule": [...],
-        "wednesdaySchedule": [...],
-        "thursdaySchedule": [...],
-        "fridaySchedule": [...],
-        "saturdaySchedule": [...]
-    }
-    ```
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the request was successful.`
+        ```json copy=false
+        {
+            "sundaySchedule": [
+                "id": "string",
+                ...
+                "airingEpisode": "number",
+                "airingAt": "date"
+            ],
+            "mondaySchedule": [...],
+            "tuesdaySchedule": [...],
+            "wednesdaySchedule": [...],
+            "thursdaySchedule": [...],
+            "fridaySchedule": [...],
+            "saturdaySchedule": [...]
+        }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when the the "type" parameter isn't given or when an invalid "type" parameter is given.`
+        ```json copy=false
+        { "error": "No type provided." }
+        { "error": "Invalid type provided." }
+        ```
+    </Tab>
+    <Tab>
+        **MIME Type:** `application/json`<br />
+        **Reason:** `Occurs when an error is thrown on the server side.`
+        ```json copy=false
+        { "error": "An error occurred." }
+        ```
     </Tab>
 </Tabs>
