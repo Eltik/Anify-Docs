@@ -15,13 +15,15 @@ The search route has a rate limit of 25 requests per minute unless you provide a
     <Tab>
         <>
             ```
-            https://api.anify.tv/search/{type}/{query}
+            https://api.anify.tv/search/{type}/{query}/{sort}/{sortDirection}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -33,7 +35,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import axios from "axios";
 
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei`;
+                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei/averagePopularity/ASC`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -53,7 +55,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import requests
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search/anime/mushoku%20tensei"
+                    url = "https://api.anify.tv/search/anime/mushoku%20tensei/averagePopularity/ASC"
                     response = requests.get(url)
                     data = response.json()
 
@@ -66,13 +68,15 @@ The search route has a rate limit of 25 requests per minute unless you provide a
     <Tab>
         <>
             ```
-            https://api.anify.tv/search?type={type}&query={query}
+            https://api.anify.tv/search?type={type}&query={query}&sort={sort}&sortDirection={sortDirection}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -84,7 +88,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import axios from "axios";
 
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei`;
+                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei&sort=averagePopularity&sortDirection=ASC`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -104,7 +108,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import requests
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei"
+                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei&sort=averagePopularity&sortDirection=ASC"
                     response = requests.get(url)
                     data = response.json()
 
@@ -122,7 +126,9 @@ The search route has a rate limit of 25 requests per minute unless you provide a
             ```json
             {
                 "type": "string",
-                "query": "string"
+                "query": "string",
+                "sort": "string",
+                "sortDirection": "string"
             }
             ```
         </>
@@ -130,6 +136,8 @@ The search route has a rate limit of 25 requests per minute unless you provide a
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -146,7 +154,9 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                         try {
                             const { data } = await axios.post(url, {
                                 type: "anime",
-                                query: "mushoku tensei"
+                                query: "mushoku tensei",
+                                sort: "averagePopularity",
+                                sortDirection: "ASC"
                             });
                             return data;
                         } catch (err) {
@@ -165,7 +175,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
 
                     # Using the example query "mushoku tensei"
                     url = "https://api.anify.tv/search"
-                    response = requests.post(url, json={'type': "anime", 'query': "mushoku tensei"})
+                    response = requests.post(url, json={'type': "anime", 'query': "mushoku tensei", 'sort': "averagePopularity", 'sortDirection': "ASC"})
                     data = response.json()
 
                     print(data)

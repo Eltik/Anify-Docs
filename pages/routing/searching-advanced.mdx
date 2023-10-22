@@ -15,18 +15,21 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
     <Tab>
         <>
             ```
-            https://api.anify.tv/search-advanced?query={query}&type={type}&genres={genres}&genresExcluded={genresExcluded}&tags={tags}&tagsExcluded={tagsExcluded}&year={year}&page={page}
+            https://api.anify.tv/search-advanced?query={query}&formats={formats}&type={type}&genres={genres}&genresExcluded={genresExcluded}&tags={tags}&tagsExcluded={tagsExcluded}&year={year}&page={page}&sort={sort}&sortDirection={sortDirection}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    No    |  `""`   |
+|   formats   | string | The formats to search for. |    No    |  `Based on the type given. Eg. anime will be TV,ONA,OVA,etc.`   |
 |   genres  | string array | Genres to include in searching. |    No    |  `[]`   |
 |   genresExcluded  | string array | Genres to exclude in searching. |    No    |  `[]`   |
 |   tags  | string array | Tags to exclude in searching. |    No    |  `[]`   |
 |   tagsExcluded  | string array | Tags to exclude in searching. |    No    |  `[]`   |
 |   year  | number | Tags to exclude in searching. |    No    |  `0`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   page  | number | Page to search for. |    No    |  `1`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
@@ -41,7 +44,7 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
                     const genresExcluded = ["Ecchi", "Slice of Life"];
 
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search?query=mushoku%20tensei&type=anime&genres=[]&genresExcluded=${JSON.stringify(genresExcluded)}`;
+                    const url = `https://api.anify.tv/search?query=mushoku%20tensei&type=anime&genres=[]&genresExcluded=${JSON.stringify(genresExcluded)}&formats=TV,ONA`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -61,7 +64,7 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
                     import requests
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search?query=mushoku%20tensei&type=anime&genres=[]&genresExcluded=[Ecchi,%20Slice&20of%20Life]"
+                    url = "https://api.anify.tv/search?query=mushoku%20tensei&type=anime&genres=[]&genresExcluded=[Ecchi,%20Slice&20of%20Life]&formats=TV,ONA"
                     response = requests.get(url)
                     data = response.json()
 
@@ -80,12 +83,15 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
             {
                 "query": "string",
                 "type": "string",
+                "formats": ["string"],
                 "genres": ["string"],
                 "genresExcluded": ["string"],
                 "tags": ["string"],
                 "tagsExcluded": ["string"],
                 "year": "number",
-                "page": "number"
+                "page": "number",
+                "sort": "string",
+                "sortDirection": "string"
             }
             ```
         </>
@@ -93,11 +99,14 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    No    |  `""`   |
+|   formats   | string | The formats to search for. |    No    |  `Based on the type given. Eg. anime will be TV,ONA,OVA,etc.`   |
 |   genres  | string array | Genres to include in searching. |    No    |  `[]`   |
 |   genresExcluded  | string array | Genres to exclude in searching. |    No    |  `[]`   |
 |   tags  | string array | Tags to exclude in searching. |    No    |  `[]`   |
 |   tagsExcluded  | string array | Tags to exclude in searching. |    No    |  `[]`   |
 |   year  | number | Tags to exclude in searching. |    No    |  `0`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   page  | number | Page to search for. |    No    |  `1`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
@@ -121,6 +130,7 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
                                 tags: ["Isekai"],
                                 tagsExcluded: [],
                                 year: 0,
+                                formats: ["TV", "ONA"]
                             });
                             return data;
                         } catch (err) {
@@ -139,7 +149,7 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
 
                     # Using the example query "mushoku tensei"
                     url = "https://api.anify.tv/search-advanced"
-                    response = requests.post(url, json={'query': "mushoku tensei", 'type': "anime", 'genres': [], 'genresExcluded': ["Ecchi", "Slice of Life"], 'tags': ["Isekai"], 'tagsExcluded': [], 'year': 0})
+                    response = requests.post(url, json={'query': "mushoku tensei", 'type': "anime", 'genres': [], 'genresExcluded': ["Ecchi", "Slice of Life"], 'tags': ["Isekai"], 'tagsExcluded': [], 'year': 0, 'formats': ["TV", "ONA"]})
                     data = response.json()
 
                     print(data)
