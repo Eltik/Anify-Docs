@@ -1,25 +1,26 @@
 ---
-title: Info
+title: Media
 ---
 
 import { Tab, Tabs } from "nextra-theme-docs";
 
-# Info
-Used for fetching information on a media. Technical details regarding the usage of the info function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
+# Media
+Used for fetching information on a media given a separate ID and provider. Technical details regarding the usage of the media function can be found below. Example code is provided for both JavaScript and Python, along with a response schema.
 
 ## Rate Limits
-The info route has a rate limit of 75 requests per minute unless your API key is whitelisted.
+The media route has a rate limit of 75 requests per minute unless your API key is whitelisted.
 
 ## Route Schema (URL)
 <Tabs items={["Parameters", "Query", "Post"]}>
     <Tab>
         <>
             ```
-            https://api.anify.tv/info/{id}
+            https://api.anify.tv/media/${providerId}/{id}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   providerId   | string | The provider ID of the item you are getting info for. Ex. `tvdb` |    Yes    |  `""`   |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
 |   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
@@ -32,7 +33,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/info/21`;
+                    const url = `https://api.anify.tv/media/tvdb/%2Fseries%2F81797`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -51,7 +52,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/info/21"
+                    url = "https://api.anify.tv/media/tvdb/%2Fseries%2F81797"
                     response = requests.get(url)
                     data = response.json()
 
@@ -69,6 +70,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   providerId   | string | The provider ID of the item you are getting info for. Ex. `tvdb` |    Yes    |  `""`   |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
 |   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
@@ -81,7 +83,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/info?id=21`;
+                    const url = `https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -100,7 +102,7 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/info?id=21"
+                    url = "https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797"
                     response = requests.get(url)
                     data = response.json()
 
@@ -113,16 +115,18 @@ The info route has a rate limit of 75 requests per minute unless your API key is
     <Tab>
         <>
             ```
-            https://api.anify.tv/info
+            https://api.anify.tv/media
             ```
             ```json
             {
+                "providerId": "string",
                 "id": "string"
             }
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
+|   providerId   | string | The provider ID of the item you are getting info for. Ex. `tvdb` |    Yes    |  `""`   |
 |   id   | string | The media ID of the item you are getting info for. |    Yes    |  `""`   |
 |   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
@@ -135,11 +139,12 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/info`;
+                    const url = `https://api.anify.tv/media`;
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
-                                id: "21"
+                                providerId: "tvdb",
+                                id: "/series/81797"
                             });
                             return data;
                         } catch (err) {
@@ -156,8 +161,8 @@ The info route has a rate limit of 75 requests per minute unless your API key is
                     ```python
                     import requests
 
-                    url = "https://api.anify.tv/info"
-                    response = requests.post(url, json={'id': "21"})
+                    url = "https://api.anify.tv/media"
+                    response = requests.post(url, json={'providerId': "tvdb", 'id': "/series/81797"})
                     data = response.json()
 
                     print(data)
@@ -321,14 +326,15 @@ The info route has a rate limit of 75 requests per minute unless your API key is
     </Tab>
     <Tab>
         **MIME Type:** `application/json`<br />
-        **Reason:** `Occurs when the the "id" parameter isn't given.`
+        **Reason:** `Occurs when the the "providerId" or "id" parameters aren't given.`
         ```json copy=false
+        { "error": "No provider ID provided." }
         { "error": "No ID provided." }
         ```
     </Tab>
     <Tab>
         **MIME Type:** `application/json`<br />
-        **Reason:** `Occurs when the provided ID isn't found in the database.`
+        **Reason:** `Occurs when the given data isn't found in the database.`
         ```json copy=false
         { "error": "No data found." }
         ```
