@@ -25,12 +25,14 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
 |   formats   | string | The formats to search for. |    No    |  `Based on the type given. Eg. anime will be TV,ONA,OVA,etc.`   |
 |   genres  | string array | Genres to include in searching. |    No    |  `[]`   |
 |   genresExcluded  | string array | Genres to exclude in searching. |    No    |  `[]`   |
-|   tags  | string array | Tags to exclude in searching. |    No    |  `[]`   |
+|   tags  | string array | Tags to include in searching. |    No    |  `[]`   |
 |   tagsExcluded  | string array | Tags to exclude in searching. |    No    |  `[]`   |
-|   year  | number | Tags to exclude in searching. |    No    |  `0`   |
-|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   season  | string | The season to search for. Must be `SUMMER`, `SPRING`, `WINTER`, `FALL`, or `UNKNOWN`. |    No    |  `UNKNOWN`   |
+|   year  | number | The year to search for. |    No    |  `0`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title`, `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `title`   |
 |   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   page  | number | Page to search for. |    No    |  `1`   |
+|   perPage  | number | Results to show per page. |    No    |  `20`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -88,8 +90,10 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
                 "genresExcluded": ["string"],
                 "tags": ["string"],
                 "tagsExcluded": ["string"],
+                "season": "string",
                 "year": "number",
                 "page": "number",
+                "perPage": "number",
                 "sort": "string",
                 "sortDirection": "string"
             }
@@ -102,12 +106,14 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
 |   formats   | string | The formats to search for. |    No    |  `Based on the type given. Eg. anime will be TV,ONA,OVA,etc.`   |
 |   genres  | string array | Genres to include in searching. |    No    |  `[]`   |
 |   genresExcluded  | string array | Genres to exclude in searching. |    No    |  `[]`   |
-|   tags  | string array | Tags to exclude in searching. |    No    |  `[]`   |
+|   tags  | string array | Tags to include in searching. |    No    |  `[]`   |
 |   tagsExcluded  | string array | Tags to exclude in searching. |    No    |  `[]`   |
-|   year  | number | Tags to exclude in searching. |    No    |  `0`   |
-|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   season  | string | The season to search for. Must be `SUMMER`, `SPRING`, `WINTER`, `FALL`, or `UNKNOWN`. |    No    |  `UNKNOWN`   |
+|   year  | number | The year to search for. |    No    |  `0`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title`, `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `title`   |
 |   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   page  | number | Page to search for. |    No    |  `1`   |
+|   perPage  | number | Results to show per page. |    No    |  `20`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -311,11 +317,12 @@ The search advanced route has a rate limit of 25 requests per minute unless you 
     </Tab>
     <Tab>
         **MIME Type:** `application/json`<br />
-        **Reason:** `Occurs when the the "type" parameter isn't given/when an invalid "type" parameter is given or when no "query" parameter is given.`
+        **Reason:** `Occurs when the the "type" parameter isn't given/when an invalid "type" parameter is given, when an invalid sort type is provided, or when an invalid sort direction is provided.`
         ```json copy=false
         { "error": "No type provided." }
         { "error": "Invalid type provided." }
-        { "error": "No query provided." }
+        { "error": "Invalid sort provided." }
+        { "error": "Invalid sort direction provided." }
         ```
     </Tab>
     <Tab>

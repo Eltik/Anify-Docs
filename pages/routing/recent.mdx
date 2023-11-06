@@ -15,7 +15,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
     <Tab>
         <>
             ```
-            https://api.anify.tv/recent?type={type}&page={page}&perPage={perPage}
+            https://api.anify.tv/recent?type={type}&page={page}&perPage={perPage}&fields={fields}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
@@ -23,6 +23,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
 |   page  | number | Page to search for. |    No    |  `0`   |
 |   perPage  | number | Amount of results per-page to display. |    No    |  `20`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -33,7 +34,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/recent?type=anime&page=3&perPage=12`;
+                    const url = `https://api.anify.tv/recent?type=anime&page=3&perPage=12&fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -52,7 +53,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
                     ```python
                     import requests
 
-                    url = "https://api.anify.tv/recent?type=anime&page=3&perPage=12"
+                    url = "https://api.anify.tv/recent?type=anime&page=3&perPage=12&fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -71,7 +72,8 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
             {
                 "type": "anime | manga | novel",
                 "page": "number",
-                "perPage": "number"
+                "perPage": "number",
+                "fields": ["string"]
             }
             ```
         </>
@@ -80,6 +82,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
 |   page  | number | Page to search for. |    No    |  `0`   |
 |   perPage  | number | Amount of results per-page to display. |    No    |  `20`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -96,7 +99,8 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
                             const { data } = await axios.post(url, {
                                 type: "anime",
                                 page: 3,
-                                perPage: 12
+                                perPage: 12,
+                                fields: ["id", "title", "coverImage"]
                             });
                             return data;
                         } catch (err) {
@@ -114,7 +118,7 @@ The recent route has a rate limit of 60 requests per minute unless your API key 
                     import requests
                     
                     url = "https://api.anify.tv/recent"
-                    response = requests.post(url, json={'type': "anime", 'page': 3, 'perPage': 12})
+                    response = requests.post(url, json={'type': "anime", 'page': 3, 'perPage': 12, 'fields': ["id", "title", "coverImage"]})
                     data = response.json()
 
                     print(data)

@@ -15,7 +15,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
     <Tab>
         <>
             ```
-            https://api.anify.tv/media/${providerId}/{id}
+            https://api.anify.tv/media/{providerId}/{id}?fields={fields}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
@@ -33,7 +33,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/media/tvdb/%2Fseries%2F81797`;
+                    const url = `https://api.anify.tv/media/tvdb/%2Fseries%2F81797?fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -52,7 +52,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/media/tvdb/%2Fseries%2F81797"
+                    url = "https://api.anify.tv/media/tvdb/%2Fseries%2F81797?fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -65,7 +65,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
     <Tab>
         <>
             ```
-            https://api.anify.tv/info?id={id}
+            https://api.anify.tv/media?providerId={providerId}&id={id}&fields={fields}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
@@ -83,7 +83,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797`;
+                    const url = `https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797&fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -102,7 +102,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797"
+                    url = "https://api.anify.tv/media?providerId=tvdb&id=%2Fseries%2F81797&fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -120,7 +120,8 @@ The media route has a rate limit of 75 requests per minute unless your API key i
             ```json
             {
                 "providerId": "string",
-                "id": "string"
+                "id": "string",
+                "fields": ["string"]
             }
             ```
         </>
@@ -144,7 +145,8 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                         try {
                             const { data } = await axios.post(url, {
                                 providerId: "tvdb",
-                                id: "/series/81797"
+                                id: "/series/81797",
+                                fields: ["id", "title", "coverImage"]
                             });
                             return data;
                         } catch (err) {
@@ -162,7 +164,7 @@ The media route has a rate limit of 75 requests per minute unless your API key i
                     import requests
 
                     url = "https://api.anify.tv/media"
-                    response = requests.post(url, json={'providerId': "tvdb", 'id': "/series/81797"})
+                    response = requests.post(url, json={'providerId': "tvdb", 'id': "/series/81797", 'fields': ["id", "title", "coverImage"]})
                     data = response.json()
 
                     print(data)

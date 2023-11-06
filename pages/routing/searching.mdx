@@ -15,14 +15,16 @@ The search route has a rate limit of 25 requests per minute unless you provide a
     <Tab>
         <>
             ```
-            https://api.anify.tv/search/{type}/{query}/{sort}/{sortDirection}
+            https://api.anify.tv/search/{type}/{query}/{page}/{perPage}/{sort}/{sortDirection}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   page  | number | Page to search for. |    No    |  `1`   |
+|   perPage  | number | Results to show per page. |    No    |  `20`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title`, `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `title`   |
 |   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
@@ -35,7 +37,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import axios from "axios";
 
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei/averagePopularity/ASC`;
+                    const url = `https://api.anify.tv/search/anime/mushoku%20tensei/1/20/averagePopularity/ASC`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -55,7 +57,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import requests
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search/anime/mushoku%20tensei/averagePopularity/ASC"
+                    url = "https://api.anify.tv/search/anime/mushoku%20tensei/1/20/averagePopularity/ASC"
                     response = requests.get(url)
                     data = response.json()
 
@@ -68,14 +70,16 @@ The search route has a rate limit of 25 requests per minute unless you provide a
     <Tab>
         <>
             ```
-            https://api.anify.tv/search?type={type}&query={query}&sort={sort}&sortDirection={sortDirection}
+            https://api.anify.tv/search?type={type}&query={query}&page={page}&perPage={perPage}&sort={sort}&sortDirection={sortDirection}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   page  | number | Page to search for. |    No    |  `1`   |
+|   perPage  | number | Results to show per page. |    No    |  `20`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title`, `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `title`   |
 |   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
@@ -88,7 +92,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import axios from "axios";
 
                     // Using the example query "mushoku tensei"
-                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei&sort=averagePopularity&sortDirection=ASC`;
+                    const url = `https://api.anify.tv/search?type=anime&query=mushoku%20tensei&page=1&perPage=20&sort=averagePopularity&sortDirection=ASC`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -108,7 +112,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                     import requests
 
                     # Using the example query "mushoku tensei"
-                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei&sort=averagePopularity&sortDirection=ASC"
+                    url = "https://api.anify.tv/search?type=anime&query=mushoku%20tensei&page=1&perPage=20&sort=averagePopularity&sortDirection=ASC"
                     response = requests.get(url)
                     data = response.json()
 
@@ -136,7 +140,9 @@ The search route has a rate limit of 25 requests per minute unless you provide a
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   query   | string | The search query; i.e. the title of the item you are looking for. |    Yes    |  `""`   |
 |   type    | string | The type of media to search for. Must be either `anime`, `manga`, or `novel`. |    Yes    |  `""`   |
-|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title->>'english'` (hopefully will be changed), `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `averageRating`   |
+|   page  | number | Page to search for. |    No    |  `1`   |
+|   perPage  | number | Results to show per page. |    No    |  `20`   |
+|   sort    | string | How to sort the returned data. Must be either `averageRating`, `averagePopularity`, `title`, `year`, `totalEpisodes`, `totalChapters`, or `totalVolumes`. |    No    |  `title`   |
 |   sortDirection    | string | Which direction to sort. Must be either `ASC` or `DESC`. |    No    |  `ASC`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
@@ -155,6 +161,8 @@ The search route has a rate limit of 25 requests per minute unless you provide a
                             const { data } = await axios.post(url, {
                                 type: "anime",
                                 query: "mushoku tensei",
+                                page: 1,
+                                perPage: 20,
                                 sort: "averagePopularity",
                                 sortDirection: "ASC"
                             });
@@ -175,7 +183,7 @@ The search route has a rate limit of 25 requests per minute unless you provide a
 
                     # Using the example query "mushoku tensei"
                     url = "https://api.anify.tv/search"
-                    response = requests.post(url, json={'type': "anime", 'query': "mushoku tensei", 'sort': "averagePopularity", 'sortDirection': "ASC"})
+                    response = requests.post(url, json={'type': "anime", 'query': "mushoku tensei", 'page': 1, 'perPage': 20, 'sort': "averagePopularity", 'sortDirection': "ASC"})
                     data = response.json()
 
                     print(data)
@@ -337,11 +345,13 @@ The search route has a rate limit of 25 requests per minute unless you provide a
     </Tab>
     <Tab>
         **MIME Type:** `application/json`<br />
-        **Reason:** `Occurs when the the "type" parameter isn't given/when an invalid "type" parameter is given or when no "query" parameter is given.`
+        **Reason:** `Occurs when the the "type" parameter isn't given/when an invalid "type" parameter is given, when no "query" parameter is given, when an invalid sort type is provided, or when an invalid sort direction is provided.`
         ```json copy=false
         { "error": "No type provided." }
         { "error": "Invalid type provided." }
         { "error": "No query provided." }
+        { "error": "Invalid sort provided." }
+        { "error": "Invalid sort direction provided." }
         ```
     </Tab>
     <Tab>

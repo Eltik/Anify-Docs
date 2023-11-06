@@ -15,12 +15,13 @@ The relations route has a rate limit of 60 requests per minute unless your API k
     <Tab>
         <>
             ```
-            https://api.anify.tv/relations/{id}
+            https://api.anify.tv/relations/{id}?fields={fields}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -31,7 +32,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900`;
+                    const url = `https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900?fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -50,7 +51,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900"
+                    url = "https://api.anify.tv/relations/a25e46ec-30f7-4db6-89df-cacbc1d9a900?fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -69,6 +70,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -79,7 +81,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900`;
+                    const url = `https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900&fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -98,7 +100,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900"
+                    url = "https://api.anify.tv/relations?id=a25e46ec-30f7-4db6-89df-cacbc1d9a900&fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -115,13 +117,15 @@ The relations route has a rate limit of 60 requests per minute unless your API k
             ```
             ```json
             {
-                "id": "string"
+                "id": "string",
+                "fields": ["string"]
             }
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
 | :-------: | :----: | ----------------------------------------------------------------- | :-------: | :-----: |
 |   id   | string | The media ID of the item you are looking for. |    Yes    |  `""`   |
+|   fields  | string[]| The fields to return in the response. For example, if you want the title and cover image, you would input `title,coverImage`. |    No    |  `[]`   |
 |   apikey  | string | Whitelisted API key |    No    |  `""`   |
 
         ## Request Samples
@@ -136,7 +140,8 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
-                                id: "a25e46ec-30f7-4db6-89df-cacbc1d9a900"
+                                id: "a25e46ec-30f7-4db6-89df-cacbc1d9a900",
+                                fields: ["id", "title", "coverImage"]
                             });
                             return data;
                         } catch (err) {
@@ -154,7 +159,7 @@ The relations route has a rate limit of 60 requests per minute unless your API k
                     import requests
                     
                     url = "https://api.anify.tv/relations"
-                    response = requests.post(url, json={'id': "a25e46ec-30f7-4db6-89df-cacbc1d9a900"})
+                    response = requests.post(url, json={'id': "a25e46ec-30f7-4db6-89df-cacbc1d9a900", 'fields': ["id", "title", "coverImage"]})
                     data = response.json()
 
                     print(data)

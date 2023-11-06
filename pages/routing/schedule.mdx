@@ -15,7 +15,7 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
     <Tab>
         <>
             ```
-            https://api.anify.tv/schedule?type={type}
+            https://api.anify.tv/schedule?type={type}&fields={fields}
             ```
         </>
 | Parameter |  Type  | Description                                                       | Required? | Default |
@@ -32,7 +32,7 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                     ```js
                     import axios from "axios";
 
-                    const url = `https://api.anify.tv/schedule?type=anime`;
+                    const url = `https://api.anify.tv/schedule?type=anime&fields=[id,title,coverImage]`;
                     const data = async () => {
                         try {
                             const { data } = await axios.get(url);
@@ -51,7 +51,7 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                     ```python
                     import requests
                     
-                    url = "https://api.anify.tv/schedule?type=anime"
+                    url = "https://api.anify.tv/schedule?type=anime&fields=[id,title,coverImage]"
                     response = requests.get(url)
                     data = response.json()
 
@@ -68,7 +68,8 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
             ```
             ```json
             {
-                "type": "string"
+                "type": "string",
+                "fields": ["string"]
             }
             ```
         </>
@@ -89,7 +90,8 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                     const data = async () => {
                         try {
                             const { data } = await axios.post(url, {
-                                type: "anime"
+                                type: "anime",
+                                fields: ["id", "title", "coverImage"]
                             });
                             return data;
                         } catch (err) {
@@ -107,7 +109,7 @@ The schedule route has a rate limit of 60 requests per minute unless your API ke
                     import requests
                     
                     url = "https://api.anify.tv/schedule"
-                    response = requests.post(url, json={'type': "anime"})
+                    response = requests.post(url, json={'type': "anime", 'fields': ["id", "title", "coverImage"]})
                     data = response.json()
 
                     print(data)
